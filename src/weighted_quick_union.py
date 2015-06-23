@@ -6,10 +6,10 @@ class WeightedQuickUnion:
     def is_connected(self, p, q):
         return self.find(p) == self.find(q)
     def find(self, p):
-        while p != self.points[p]:
-            p = self.points[p]
-
-        return p
+        if p == self.points[p]:
+            return p
+        else:
+            return self.find(self.points[p])
     def union(self, p, q):
         parent = self.find(p)
         child = self.find(q)
